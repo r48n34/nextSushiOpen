@@ -41,12 +41,12 @@ const Home: NextPage = () => {
 
       <div style={{ display: "flex", justifyContent:"space-between", marginTop: "1.5rem" }}>
         <div>
-        {allStore && allStore.status && (
-          <>
-            <h2 style={{ margin: "0" }}> {allStore.data.allStoreData.name}</h2>
-            <h5 style={{ margin: "0" }}> Last Update: {lastUpdateTime}</h5>
-          </>
-        )}
+          {allStore && allStore.status && (
+            <>
+              <h2 style={{ margin: "0" }}> {allStore.data.allStoreData.name}</h2>
+              <h5 style={{ margin: "0" }}> Last Update: {lastUpdateTime}</h5>
+            </>
+          )}
         </div>
 
         <div style={{ display:"flex", justifyContent:"center", alignItems:"center"}}>

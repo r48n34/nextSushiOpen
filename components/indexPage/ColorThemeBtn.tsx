@@ -1,29 +1,53 @@
-import IconButton from '@mui/material/IconButton';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { colorModeState } from '../../atoms/colorMode';
-import Brightness3Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { useEffect } from 'react';
+import Switch from '@mui/material/Switch';
+import LightModeIcon from '@mui/icons-material/LightMode';
+
+import { useEffect, useState } from 'react';
 
 function ColorThemeBtn(){
-    const [ colorMode, setColorMode ] = useRecoilState<boolean>(colorModeState);
-   
+    const [ colorMode, setColorMode ] = useState<boolean>(true);
+    const [ initLoading, setInitLoading ] = useState<boolean>(true);
 
-    useEffect(() => {
-    
+    useEffect(() =>{
+        if(colorMode === null || typeof window === "undefined"){
+            return;
+        }
+
+        if(initLoading){
+            setInitLoading(false);
+
+            let data = localStorage.getItem("userColorPreferences");
+            if(!data || data === null){
+                localStorage.setItem("userColorPreferences", "true");
+            }
+            setColorMode(data === "true")
+
+            return;
+        }
+
+        toggleFunc();
+        localStorage.setItem("userColorPreferences", colorMode+"")
+    },[colorMode])
+   
+    function toggleFunc(){
+
+        console.log(colorMode);
+
         const bodyElt = document.querySelector("body");
         if(bodyElt){
           bodyElt.style.backgroundColor = colorMode ? "white" : "#151515";
           bodyElt.style.color = colorMode ? "black" : "white";
-          localStorage.setItem("userColorPreferences", colorMode + "");
         }
-        
-    },[colorMode])
+
+    }
     
     return(
-    <IconButton onClick={() => setColorMode(!colorMode) }>
-        {colorMode ? <Brightness7Icon/> : <Brightness3Icon sx={{ color:"white" }}/>}
-    </IconButton>
+        <>
+        <LightModeIcon/>
+        <Switch
+            checked={colorMode}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => setColorMode(event.target.checked)}
+        />
+        </>
     )
 }
 
