@@ -5,17 +5,18 @@ import { useRecoilState } from "recoil";
 import { allStoreInfoState } from "../../atoms/allStoreInfo";
 import { tickerCallBeforeState } from "../../atoms/tickerCallBefore";
 import { tickerNumberState } from "../../atoms/tickerNumber";
+import { RecivedRootData } from "../../interface/sushiInterface";
 
 import { callNotifications } from "../../utilis/notificationsUtilis";
 import FormDialog from "./FormDialog"
 
 function UserQueueInfo(){
 
-    const [ tickerNumber, setTickerNumber ] = useRecoilState(tickerNumberState);
-    const [ tickerCallBefore, setTickerCallBefore ] = useRecoilState(tickerCallBeforeState);
+    const [ tickerNumber ] = useRecoilState<number>(tickerNumberState);
+    const [ tickerCallBefore ] = useRecoilState<number>(tickerCallBeforeState);
+    const [ allStore ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
 
-    const [ allStore, setAllStore ] = useRecoilState<any>(allStoreInfoState);
-    const data = allStore.data.singleStoreQueue.boothQueue;
+    const data = allStore ? allStore.data.singleStoreQueue.boothQueue : [-999];
 
     useEffect(() => {
         if(!data || data.length <= 2 || tickerNumber === -1){

@@ -1,6 +1,8 @@
 import { atom } from "recoil";
+import { RecivedRootData } from "../interface/sushiInterface";
 
-export const allStoreInfoState = atom({
+// store fetched data from api
+export const allStoreInfoState = atom<RecivedRootData | null>({
   key: "allStoreInfo",
-  default: [],
+  default: ({} as RecivedRootData),
 });

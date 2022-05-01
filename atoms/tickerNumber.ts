@@ -1,6 +1,7 @@
 import { atom } from "recoil";
 
-export const tickerNumberState = atom({
+// store current users ticket
+export const tickerNumberState = atom<number>({
   key: "tickerNumber",
   default: -1,
 });

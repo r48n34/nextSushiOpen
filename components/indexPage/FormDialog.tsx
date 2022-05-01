@@ -12,7 +12,7 @@ import { useRecoilState } from 'recoil';
 import { tickerCallBeforeState } from '../../atoms/tickerCallBefore';
 import { tickerNumberState } from '../../atoms/tickerNumber';
 
-export default function FormDialog() {
+function FormDialog() {
   const [ open, setOpen ] = useState(false);
 
   // tickerNumber, tickerCallBefore
@@ -84,3 +84,5 @@ export default function FormDialog() {
     </div>
   );
 }
+
+export default FormDialog

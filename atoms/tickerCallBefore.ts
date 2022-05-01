@@ -1,6 +1,7 @@
 import { atom } from "recoil";
 
-export const tickerCallBeforeState = atom({
+// store before call ticker number
+export const tickerCallBeforeState = atom<number>({
   key: "tickerCallBefore",
   default: 15,
 });

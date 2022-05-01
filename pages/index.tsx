@@ -21,8 +21,7 @@ const Home: NextPage = () => {
   const [ lastUpdateTime, setLastUpdateTime ] = useState<string | null>(null);
 
   const [ isLoading, isError, reCallFetch ] = useStoreQueue(selectedId);
-
-  const [ allStore, setAllStore ] = useRecoilState<any>(allStoreInfoState);
+  const [ allStore ] = useRecoilState<any>(allStoreInfoState);
 
   useEffect(() => {
     setLastUpdateTime( new Date().toLocaleString("en-US", {timeZone: "Asia/Hong_kong"}) );
@@ -39,7 +38,7 @@ const Home: NextPage = () => {
         <div>
           {allStore && allStore.status && (
             <>
-              <h2 style={{ margin: "0" }}> {allStore.data.allStoreData.name}</h2>
+              <h2 style={{ margin: "0" }}> {allStore.data.allStoreData.name} ({allStore.data.allStoreData.storeStatus})</h2>
               <h5 style={{ margin: "0" }}> Last Update: {lastUpdateTime}</h5>
             </>
           )}

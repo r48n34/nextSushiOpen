@@ -30,8 +30,6 @@ function ColorThemeBtn(){
    
     function toggleFunc(){
 
-        console.log(colorMode);
-
         const bodyElt = document.querySelector("body");
         if(bodyElt){
           bodyElt.style.backgroundColor = colorMode ? "white" : "#151515";

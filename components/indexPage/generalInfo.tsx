@@ -3,7 +3,7 @@ import { allStoreInfoState } from "../../atoms/allStoreInfo";
 
 const GeneralInfo = () => {
 
-    const [ allStore, setAllStore ] = useRecoilState<any>(allStoreInfoState);
+    const [ allStore ] = useRecoilState<any>(allStoreInfoState);
 
     return(
         <>

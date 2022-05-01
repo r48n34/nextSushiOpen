@@ -53,3 +53,28 @@ export interface StoreQueue {
     mixedQueue: string[];
     reservationQueue: any[];
 }
+
+export interface RecivedRootData {
+    status: boolean;
+    data: Data;
+}
+
+export interface Data {
+    errorMsg: string;
+    allStoreData: AllStoreDataReduced;
+    singleStoreQueue: SingleStoreQueueReduced;
+}
+
+export interface AllStoreDataReduced {
+    id: number;
+    name: string;
+    storeStatus: string;
+    wait: number;
+    waitingGroup: number;
+}
+
+export interface SingleStoreQueueReduced {
+    boothQueue: any[];
+    mixedQueue: any[];
+}
+

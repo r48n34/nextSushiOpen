@@ -5,14 +5,13 @@ import useInterval from 'react-useinterval';
 import { callLoadingSwal, closeSwal } from "../utilis/swalCall"
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
+import { RecivedRootData } from '../interface/sushiInterface';
 
 export function useStoreQueue(selectedId: string | null):any {
     const callApiPath = `/api/sushiCall?id=${selectedId}&method=QueueAndWaitTime`;
 
-    const [ data, setData ] = useRecoilState(allStoreInfoState);
+    const [ data, setData ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
 
-
-    //const [ data, setData ] = useState([]); // fetched data
     const [ initLoading, setInitLoading ] = useState(true); // is first time loading 
     const [ loading, setLoading ] = useState(false); // is fetching in progress
     const [ error, setError ] = useState(null); // error of fetch messgae
@@ -54,7 +53,7 @@ export function useStoreQueue(selectedId: string | null):any {
             setData(data.data);
         }
         catch(err:any){
-            setData([]);
+            setData(null);
             setError(err);
         }
         finally{
