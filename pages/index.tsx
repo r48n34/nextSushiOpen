@@ -13,11 +13,7 @@ import UserQueueInfo from '../components/indexPage/UserQueueInfo';
 import styles from './pageCss.module.css'
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
-
-import { colorModeState } from '../atoms/colorMode';
 import ColorThemeBtn from '../components/indexPage/ColorThemeBtn';
-
-import { getRecordMode } from '../atoms/colorMode';
 
 const Home: NextPage = () => {
 
