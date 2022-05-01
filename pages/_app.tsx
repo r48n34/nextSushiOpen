@@ -1,9 +1,11 @@
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useRecoilState } from "recoil";
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from '@mui/material/styles';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
@@ -18,18 +20,28 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
     <RecoilRoot>
     <CacheProvider value={emotionCache}>
+
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="description"  content="Just a simple sushi queue watcher." />
+        <meta name="author" content="reemo"/>
+
+        <meta property="og:title" content="Sushi queue" />
+        <meta property="og:description" content="Just a simple sushi queue watcher." />
+        <meta property="og:site_name" content="Sushi queue" />
+
+        <meta name="keywords" content="sushi,queue,call"/>
       </Head>
+
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        {/* <style jsx global>{`body {background: #3b6fe0;}`}</style> */}
         <Component {...pageProps} />
       </ThemeProvider>
+
     </CacheProvider>
     </RecoilRoot>
   );

@@ -14,6 +14,11 @@ import styles from './pageCss.module.css'
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
 
+import { colorModeState } from '../atoms/colorMode';
+import ColorThemeBtn from '../components/indexPage/ColorThemeBtn';
+
+import { getRecordMode } from '../atoms/colorMode';
+
 const Home: NextPage = () => {
 
   const [ selectedId, setSelectedId ] = useState<string | null>(null);
@@ -22,7 +27,6 @@ const Home: NextPage = () => {
   const [ isLoading, isError, reCallFetch ] = useStoreQueue(selectedId);
 
   const [ allStore, setAllStore ] = useRecoilState<any>(allStoreInfoState);
-
 
   useEffect(() => {
     setLastUpdateTime( new Date().toLocaleString("en-US", {timeZone: "Asia/Hong_kong"}) );
@@ -33,7 +37,7 @@ const Home: NextPage = () => {
   },[])
 
   return (
-    <Container maxWidth="xl" className={styles.textStyle}>
+    <Container maxWidth="xl" className={styles.textStyleLightBg}>
 
       <div style={{ display: "flex", justifyContent:"space-between", marginTop: "1.5rem" }}>
         <div>
@@ -44,11 +48,15 @@ const Home: NextPage = () => {
           </>
         )}
         </div>
-        <DashBoardStore setSelectedText={setSelectedId}/>
+
+        <div style={{ display:"flex", justifyContent:"center", alignItems:"center"}}>
+          <DashBoardStore setSelectedText={setSelectedId}/>
+          <ColorThemeBtn/>
+        </div>  
       </div>
 
       <hr/>
-
+      
       {selectedId && allStore && allStore.status ? (
       <>
         <GeneralInfo/>
