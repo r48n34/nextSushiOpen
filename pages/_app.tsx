@@ -1,30 +1,25 @@
 import { RecoilRoot, useRecoilState } from "recoil";
-
-import Head from 'next/head';
 import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+export default function App(props: AppProps) {
+  const { Component, pageProps } = props;
 
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import theme from '../src/theme';
-import createEmotionCache from '../src/createEmotionCache';
-import './styles.css';
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'mantine-color-scheme',
+    defaultValue: 'dark',
+    getInitialValueInEffect: true,
+  });
 
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
+  const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
-interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
-}
-
-export default function MyApp(props: MyAppProps) {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
   return (
     <RecoilRoot>
-    <CacheProvider value={emotionCache}>
-
+      
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta name="description"  content="Just a simple sushi queue watcher." />
@@ -37,12 +32,15 @@ export default function MyApp(props: MyAppProps) {
         <meta name="keywords" content="sushi,queue,call"/>
       </Head>
 
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
-
-    </CacheProvider>
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ colorScheme }}
+        >
+          <Component {...pageProps} />
+        </MantineProvider>
+      </ColorSchemeProvider>
     </RecoilRoot>
   );
 }

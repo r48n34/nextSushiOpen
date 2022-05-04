@@ -8,7 +8,7 @@ import { tickerNumberState } from "../../atoms/tickerNumber";
 import { RecivedRootData } from "../../interface/sushiInterface";
 
 import { callNotifications } from "../../utilis/notificationsUtilis";
-import FormDialog from "./FormDialog"
+// import FormDialog from "./FormDialog"
 
 function UserQueueInfo(){
 
@@ -32,7 +32,8 @@ function UserQueueInfo(){
 
     return (
         <>
-        <h2>Your ticket  { data && data.length >= 3 && <FormDialog/>} </h2>
+        {/* <h2>Your ticket  { data && data.length >= 3 && <FormDialog/>} </h2> */}
+        <h2>Your ticket</h2>
         { tickerNumber !== -1 && (
 
             <Grid container spacing={2} sx={{ textAlign:"center" }}>

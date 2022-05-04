@@ -1,7 +1,9 @@
-import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import { Grid } from '@mantine/core';
+
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../../atoms/allStoreInfo';
+
+import { Refresh } from 'tabler-icons-react';
 
 function QueueTicket({ refreshFunc }:{ refreshFunc:Function }){
 
@@ -9,14 +11,18 @@ function QueueTicket({ refreshFunc }:{ refreshFunc:Function }){
 
     return(
         <>
-        <h2>Queue ticket <Button onClick={ () => refreshFunc() }>Refresh</Button> </h2>
-
+        
+        <h2 style={{ margin:"0" }}>
+          Queue ticket 
+          <Refresh style={{ paddingTop:"9px"}} size={24} strokeWidth={2} color={'#4075bf'} onClick={ () => refreshFunc() }/>
+        </h2>
+        
         <div style={{ textAlign:"center"}}>
-          <Grid container spacing={2}>
+          <Grid>
             {allStore.data.singleStoreQueue.boothQueue.map( (v:string) => (
-              <Grid key={v} item xs={4}>
+              <Grid.Col key={v} span={4}>
                 <h1 style={{ margin:"0" }}>{v}</h1>
-              </Grid>
+              </Grid.Col>
             ))}
           </Grid>
         </div>

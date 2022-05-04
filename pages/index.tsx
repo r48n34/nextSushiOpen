@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 
-import Container from '@mui/material/Container';
+import { Container } from '@mantine/core';
 import { useStoreQueue } from '../hook/useStoreQueue';
 
 import DashBoardStore from '../components/indexPage/dashBoardStore';
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
   },[])
 
   return (
-    <Container maxWidth="xl" className={styles.textStyleLightBg}>
+    <Container size="xl" className={styles.textStyleLightBg}>
 
       <div style={{ display: "flex", justifyContent:"space-between", marginTop: "1.5rem" }}>
         <div>
@@ -46,6 +46,7 @@ const Home: NextPage = () => {
 
         <div style={{ display:"flex", justifyContent:"center", alignItems:"center"}}>
           <DashBoardStore setSelectedText={setSelectedId}/>
+          <div style={{ width:"10px"}}></div>
           <ColorThemeBtn/>
         </div>  
       </div>
