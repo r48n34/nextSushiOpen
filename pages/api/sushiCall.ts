@@ -9,8 +9,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const getId = req.query.id as string || "-1";
         const getMethod = req.query.method as string || "All";
 
-        let finalData = {};
-
         if(getMethod !== "All" && getMethod !== "OnlyQueue" && getMethod !== "QueueAndWaitTime"){
             throw new Error("Invalid method input.");
         }

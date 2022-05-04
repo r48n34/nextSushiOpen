@@ -17,6 +17,7 @@
     "@mantine/core": "^4.2.2",
     "@mantine/hooks": "^4.2.2",
     "@mantine/next": "^4.2.2",
+    "@mantine/notifications": "^4.2.2",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@react-spring/parallax": "^9.4.4",

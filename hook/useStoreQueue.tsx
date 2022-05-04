@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from "axios"
 import useInterval from 'react-useinterval';
+import { showNotification } from '@mantine/notifications';
 
 import { callLoadingSwal, closeSwal } from "../utilis/swalCall"
 import { useRecoilState } from 'recoil';
@@ -26,9 +27,20 @@ export function useStoreQueue(selectedId: string | null):any {
     async function manuelFetch(){
 
         if(stopManuelfetch){
-            console.log("Wait");
+            showNotification({
+                title: 'Error',
+                color: 'red',
+                message: 'You can not fetch too fast. Please wait.',
+                autoClose: 4500,
+            })
             return false;
         }
+
+        showNotification({
+            title: 'Fetching',
+            message: 'You request is processing.',
+            autoClose: 4500,
+        })
 
         fetchData();
         setStopManuelfetch(true);
@@ -51,10 +63,23 @@ export function useStoreQueue(selectedId: string | null):any {
 
             let data = await axios.get(callApiPath);
             setData(data.data);
+
+            showNotification({
+                title: 'Updated',
+                message: 'New queue info is here!',
+                autoClose: 1500,
+            })
         }
         catch(err:any){
             setData(null);
             setError(err);
+
+            showNotification({
+                title: 'Error',
+                color: 'red',
+                message: 'Current data occur error.',
+                autoClose: 1500,
+            })
         }
         finally{
             setLoading(false);
@@ -64,8 +89,10 @@ export function useStoreQueue(selectedId: string | null):any {
         }
     }
    
-    useInterval(fetchData, 10000);
-    useInterval(() => setStopManuelfetch(false), 6000);
+    useInterval(fetchData, 15000);
+    useInterval(() => {
+        setStopManuelfetch(false);
+    }, 4000);
     //allStore, isLoading, isError, manuelFetch
     return [ loading, error, manuelFetch ]
 }

@@ -1,12 +1,6 @@
 import { useState } from 'react';
-
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Dialog, Group, Button, Text, NumberInput } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 
 import { useRecoilState } from 'recoil';
 import { tickerCallBeforeState } from '../../atoms/tickerCallBefore';
@@ -16,7 +10,7 @@ function FormDialog() {
   const [ open, setOpen ] = useState(false);
 
   // tickerNumber, tickerCallBefore
-  const [ tempValue, setTempValue ] = useState<number[]>([-1,15]);
+  const [ tempValue, setTempValue ] = useState<number[]>([0,15]);
 
   const [ tickerNumber, setTickerNumber ] = useRecoilState(tickerNumberState);
   const [ tickerCallBefore, setTickerCallBefore ] = useRecoilState(tickerCallBeforeState);
@@ -26,12 +20,17 @@ function FormDialog() {
     console.log(tempValue);
 
     if(!tempValue[0] || !tempValue[1]){
-        return;
+      return;
     }
 
     if(typeof tempValue[0] !== "number" || typeof tempValue[0] !== "number" || tempValue[0] < 0 || tempValue[1] < 0){
-        return;
+      return;
     }
+
+    showNotification({
+      title: 'Success',
+      message: 'Your ticket is added to notifications.',
+    })
 
     setTickerNumber(tempValue[0]);
     setTickerCallBefore(tempValue[1]);
@@ -39,49 +38,31 @@ function FormDialog() {
   }
 
   return (
-    <div>
+    <>
+      <Group position="center">
+        <Button onClick={() => setOpen((v) => !v)}>Toggle dialog</Button>
+      </Group>
 
-      <Button variant="outlined" onClick={() => setOpen(true)}>
-        Enter ticket
-      </Button>
+      <Dialog
+        opened={open}
+        withCloseButton
+        onClose={() => setOpen(false)}
+        size="lg"
+        radius="md"
+      >
+        <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+          Enter your ticket number to get notifications.
+        </Text>
 
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Queue Ticket</DialogTitle>
+        <Group align="flex-end">
 
-        <DialogContent>
+          <NumberInput min={0} label="Your ticket" defaultValue={tempValue[0]} onChange={(val:number) => setTempValue([val, tempValue[1]])} />
+          <NumberInput min={0} label="Before call" defaultValue={tempValue[1]} onChange={(val:number) => setTempValue([tempValue[0], val])} />
 
-            <DialogContentText>
-                Enter your ticket no here.
-            </DialogContentText>
-            <br/>
-            <TextField
-                margin="dense"
-                label="Ticket no"
-                type="number"
-                fullWidth
-                onChange={ (e) => setTempValue([ +e.currentTarget.value, tempValue[1] ])}
-                InputLabelProps={{ shrink: true, }}
-            />
-
-            <TextField
-                margin="dense"
-                label="Notices when before"
-                type="number"
-                fullWidth
-                defaultValue={tickerCallBefore}
-                onChange={ (e) => setTempValue([tempValue[0], +e.currentTarget.value])}
-                InputLabelProps={{ shrink: true, }}
-            />
-
-        </DialogContent>
-
-        <DialogActions>
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
           <Button onClick={() => inputTicketHandler()}>Enter</Button>
-        </DialogActions>
-
+        </Group>
       </Dialog>
-    </div>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ import { Refresh } from 'tabler-icons-react';
 
 function QueueTicket({ refreshFunc }:{ refreshFunc:Function }){
 
-    const [ allStore, setAllStore ] = useRecoilState<any>(allStoreInfoState);
+    const [ allStore ] = useRecoilState<any>(allStoreInfoState);
 
     return(
         <>

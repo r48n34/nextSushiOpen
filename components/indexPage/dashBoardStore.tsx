@@ -1,6 +1,7 @@
 import { Menu, Button } from '@mantine/core';
 import { useMantineColorScheme } from '@mantine/core';
 import useSWRImmutable from 'swr/immutable'
+import { BuildingStore } from 'tabler-icons-react';
 
 import { useRecoilState } from 'recoil';
 import { tickerNumberState } from '../../atoms/tickerNumber';
@@ -33,7 +34,7 @@ const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) =
             <Menu control={<Button type="button" size="xs" color={colorScheme} >Select Store</Button>}>
                 <Menu.Label>Store</Menu.Label>
                 {singleQueue && singleQueue.data && singleQueue.data.allStoreData && singleQueue.data.allStoreData.map( (v:any) => (
-                        <Menu.Item key={"store" + v.id} onClick={ (event:any) => handleClose(event, v.id)}>{v.name}</Menu.Item>
+                        <Menu.Item icon={<BuildingStore size={14}/>} key={"store" + v.id} onClick={ (event:any) => handleClose(event, v.id)}>{v.name}</Menu.Item>
                     ))}
                 {!singleQueue && (<Menu.Item onClick={ (event:any) => handleClose(event, undefined)}>Loading...</Menu.Item>)}
 

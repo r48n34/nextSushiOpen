@@ -1,4 +1,4 @@
-function askAndGetPermisstion(){
+function askAndGetPermisstion():Promise<boolean>{
     return new Promise( (rec, rej) => {
 
         if (Notification.permission === "granted") {
