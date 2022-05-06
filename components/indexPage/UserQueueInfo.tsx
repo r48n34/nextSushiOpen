@@ -10,6 +10,9 @@ import { RecivedRootData } from "../../interface/sushiInterface";
 import { askAndGetPermisstion, callNotifications } from "../../utilis/notificationsUtilis";
 import FormDialog from "./FormDialog"
 
+import useSound from 'use-sound';
+// import rockSF from '/sounds/rock.mp3';
+
 function UserQueueInfo(){
 
     const [ tickerNumber ] = useRecoilState<number>(tickerNumberState);
@@ -17,6 +20,8 @@ function UserQueueInfo(){
     const [ allStore ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
     
     const [ isNotifications, setIsNotifications ] = useState(false);
+
+    const [play] = useSound('/sounds/rock.mp3');
 
     useEffect( () =>{
         ( async () =>{
@@ -34,6 +39,7 @@ function UserQueueInfo(){
 
         if(isNotifications && tickerCallBefore >= tickerNumber - (+data[0])){
             console.log("Calling");
+            play();
             callNotifications("Is near now!");
         }
 

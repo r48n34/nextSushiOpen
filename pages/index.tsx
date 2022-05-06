@@ -14,6 +14,7 @@ import styles from './pageCss.module.css'
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
 import ColorThemeBtn from '../components/indexPage/ColorThemeBtn';
+import LeftDrawer from '../components/indexPage/LeftDrawer';
 
 const Home: NextPage = () => {
 
@@ -64,6 +65,8 @@ const Home: NextPage = () => {
       :( <WaitInfo/> )
       
     }
+
+    <LeftDrawer/>
 
     </Container>
   );

@@ -39,8 +39,8 @@ function FormDialog() {
 
   return (
     <>
-      <Group position="center">
-        <Button onClick={() => setOpen((v) => !v)}>Toggle dialog</Button>
+      <Group position="left">
+        <Button size="xs" onClick={() => setOpen((v) => !v)}>Enter ticket</Button>
       </Group>
 
       <Dialog
