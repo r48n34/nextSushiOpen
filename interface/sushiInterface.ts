@@ -71,6 +71,10 @@ export interface AllStoreDataReduced {
     storeStatus: string;
     wait: number;
     waitingGroup: number;
+    address: string;
+    region: string;
+    position: number[]
+    // latitude, longitude
 }
 
 export interface SingleStoreQueueReduced {

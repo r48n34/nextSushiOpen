@@ -23,7 +23,10 @@ async function getAllStorewaitInfo(){
             name: v.name,
             storeStatus: v.storeStatus,
             wait: v.wait,
-            waitingGroup: v.waitingGroup
+            waitingGroup: v.waitingGroup,
+            address: v.address,
+            region: v.region,
+            position: [v.latitude, v.longitude]
         }
     })
     .sort( (a:StoreQueueReduce, b:StoreQueueReduce) => a.id - b.id );

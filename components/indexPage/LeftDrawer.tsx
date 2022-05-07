@@ -1,15 +1,24 @@
-import { useState } from 'react';
-import { Drawer, Button, Group } from '@mantine/core';
-import { useHotkeys } from '@mantine/hooks';
-import ColorThemeBtn from './ColorThemeBtn';
-import { BrandGithub } from 'tabler-icons-react';
+import { useEffect, useState } from 'react';
 
-function LeftDrawer() {
-  const [opened, setOpened] = useState<boolean>(false);
+import { Drawer, Button, ScrollArea, MultiSelect, useMantineColorScheme } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
+
+import MapModal from './MapModal';
+
+function LeftDrawer({ singleQueue }:any) {
+  const [ opened, setOpened ] = useState<boolean>(false);
+  const [ filtedRegion, setFiltedRegion ] = useState<string[]>([]);
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
+
+  const allRegion:string[] = (singleQueue && Array.from( new Set( singleQueue.data.allStoreData.map((v:any) => v.region)) )) || [];
 
   useHotkeys([
     ['ctrl+S', () => setOpened(!opened)],
   ]);
+  useEffect( () => {
+    console.log(filtedRegion);
+  },[filtedRegion])
 
   return (
     <>
@@ -24,20 +33,32 @@ function LeftDrawer() {
         transitionTimingFunction="ease"
       >
 
-        <div style={{display:"flex", alignItems:"center"}}>
-          <h3>Color mode</h3>
-          <div style={{ width:"6px" }}> </div>
-          <ColorThemeBtn/>
-        </div>
+        <h2>Store location:</h2>
+        <MultiSelect
+          data={allRegion}
+          label="Regions"
+          placeholder="Pick the regions"
+          onChange={setFiltedRegion}
+        />
 
-        <div style={{ height:"88%", display:"flex", alignItems:"end"}}>
-          <div>
-          <hr/>
-          <BrandGithub onClick={() => location.href = "https://github.com/r48n34/nextSushiOpen"}/>
-          </div>
-        </div>
-        
+        <ScrollArea style={{ height: 450 }}>
+          {singleQueue && 
+          singleQueue.data && 
+          singleQueue.data.allStoreData && 
+          singleQueue.data.allStoreData.filter( (v:any) => filtedRegion.indexOf(v.region) >= 0)
+          .map( (v:any) => (
+            <div key={"store" + v.id}>
+              <h4 style={{ margin:"0", marginTop: "5px" }}>{v.name}</h4>
+              <h5 style={{ margin:"0", marginBottom: "5px" }}>{v.address}</h5>
+              <MapModal storeLocation={v.position} storePlaceString={v.address}/>
+            </div>
+          ))}
+        </ScrollArea>
+
       </Drawer>
+
+      <Button size="xs" color={colorScheme} onClick={() => setOpened(true)}>Info</Button>
+
     </>
   );
 }

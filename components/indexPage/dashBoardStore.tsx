@@ -8,6 +8,7 @@ import { tickerNumberState } from '../../atoms/tickerNumber';
 import { fetcher } from "../../utilis/swrFetcher"
 import React from 'react';
 import { callLoadingSwal } from '../../utilis/swalCall';
+import LeftDrawer from './LeftDrawer';
 
 const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) => {
 
@@ -35,12 +36,15 @@ const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) =
                 <Menu.Label>Store</Menu.Label>
                 {singleQueue && singleQueue.data && singleQueue.data.allStoreData && singleQueue.data.allStoreData.map( (v:any) => (
                         <Menu.Item icon={<BuildingStore size={14}/>} key={"store" + v.id} onClick={ (event:any) => handleClose(event, v.id)}>{v.name}</Menu.Item>
-                    ))}
+                ))}
                 {!singleQueue && (<Menu.Item onClick={ (event:any) => handleClose(event, undefined)}>Loading...</Menu.Item>)}
 
             </Menu>
+            {" "}
+            <LeftDrawer singleQueue={singleQueue}/>
             </>
         )}
+
       </div>
     );
     

@@ -9,12 +9,12 @@ import GeneralInfo from "../components/indexPage/generalInfo"
 import WaitInfo from '../components/indexPage/WaitInfo';
 import QueueTicket from '../components/indexPage/QueueTicket';
 import UserQueueInfo from '../components/indexPage/UserQueueInfo';
+// import LeftDrawer from '../components/indexPage/LeftDrawer';
 
 import styles from './pageCss.module.css'
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
 import ColorThemeBtn from '../components/indexPage/ColorThemeBtn';
-import LeftDrawer from '../components/indexPage/LeftDrawer';
 
 const Home: NextPage = () => {
 
@@ -65,8 +65,6 @@ const Home: NextPage = () => {
       :( <WaitInfo/> )
       
     }
-
-    <LeftDrawer/>
 
     </Container>
   );

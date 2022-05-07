@@ -47,7 +47,7 @@ function FormDialog() {
         opened={open}
         withCloseButton
         onClose={() => setOpen(false)}
-        size="lg"
+        size="md"
         radius="md"
       >
         <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
@@ -55,12 +55,12 @@ function FormDialog() {
         </Text>
 
         <Group align="flex-end">
-
           <NumberInput min={0} label="Your ticket" defaultValue={tempValue[0]} onChange={(val:number) => setTempValue([val, tempValue[1]])} />
           <NumberInput min={0} label="Before call" defaultValue={tempValue[1]} onChange={(val:number) => setTempValue([tempValue[0], val])} />
-
-          <Button onClick={() => inputTicketHandler()}>Enter</Button>
         </Group>
+
+          <br/>
+          <Button onClick={() => inputTicketHandler()}>Enter</Button>
       </Dialog>
     </>
   );

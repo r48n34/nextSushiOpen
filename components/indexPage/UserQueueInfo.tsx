@@ -9,9 +9,7 @@ import { RecivedRootData } from "../../interface/sushiInterface";
 
 import { askAndGetPermisstion, callNotifications } from "../../utilis/notificationsUtilis";
 import FormDialog from "./FormDialog"
-
 import useSound from 'use-sound';
-// import rockSF from '/sounds/rock.mp3';
 
 function UserQueueInfo(){
 
