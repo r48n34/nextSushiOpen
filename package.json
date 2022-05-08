@@ -35,6 +35,7 @@
     "react-color": "^2.19.3",
     "react-dom": "latest",
     "react-flow-renderer": "^10.1.0",
+    "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.34.0",
     "react-useinterval": "^1.0.2",
     "recoil": "^0.7.2",

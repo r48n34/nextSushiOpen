@@ -8,6 +8,7 @@ import { showNotification } from '@mantine/notifications';
 function MapModal({ storeLocation, storePlaceString }: { storeLocation:[number, number], storePlaceString:string }) {
   const [ opened, setOpened ] = useState<boolean>(false);
   const [ locationPol, setLocationPol ] = useState<[number, number]>(storeLocation || [50.879, 4.6997]);
+  const [ zoom, setZoom ] = useState(16)
 
   function clickHandler(){
     copyToClipboard(storePlaceString);
@@ -26,14 +27,23 @@ function MapModal({ storeLocation, storePlaceString }: { storeLocation:[number, 
         title="Location"
       >
           <div style={{ height: "500px" }}>
-            <Map defaultCenter={locationPol} defaultZoom={16}>
-                <Marker width={30} anchor={locationPol} onClick={ () => clickHandler() } />
+            <Map 
+              defaultCenter={locationPol} 
+              defaultZoom={16}
+              center={locationPol}
+              zoom={zoom}
+              onBoundsChanged={({ center, zoom }) => { 
+                setLocationPol(center) 
+                setZoom(zoom) 
+              }} 
+            >
+                <Marker width={30} anchor={storeLocation || [50.879, 4.6997]} onClick={ () => clickHandler() } />
             </Map>
           </div>
       </Modal>
 
       <Group position="left">
-        <Button onClick={() => setOpened(true)}>Open Map</Button>
+        <Button size="xs" onClick={() => setOpened(true)}>Open Map</Button>
       </Group>
     </>
   );

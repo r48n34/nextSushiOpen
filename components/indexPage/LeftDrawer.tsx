@@ -4,6 +4,8 @@ import { Drawer, Button, ScrollArea, MultiSelect, useMantineColorScheme } from '
 import { useHotkeys } from '@mantine/hooks';
 
 import MapModal from './MapModal';
+import { DiAptana } from "react-icons/di";
+
 
 function LeftDrawer({ singleQueue }:any) {
   const [ opened, setOpened ] = useState<boolean>(false);
@@ -16,6 +18,7 @@ function LeftDrawer({ singleQueue }:any) {
   useHotkeys([
     ['ctrl+S', () => setOpened(!opened)],
   ]);
+
   useEffect( () => {
     console.log(filtedRegion);
   },[filtedRegion])
@@ -41,7 +44,7 @@ function LeftDrawer({ singleQueue }:any) {
           onChange={setFiltedRegion}
         />
 
-        <ScrollArea style={{ height: 450 }}>
+        <ScrollArea style={{ height: 350 }}>
           {singleQueue && 
           singleQueue.data && 
           singleQueue.data.allStoreData && 
@@ -57,7 +60,7 @@ function LeftDrawer({ singleQueue }:any) {
 
       </Drawer>
 
-      <Button size="xs" color={colorScheme} onClick={() => setOpened(true)}>Info</Button>
+      <Button size="xs" color={colorScheme == 'dark' ? 'white' : 'dark'} onClick={() => setOpened(true)}> <DiAptana/> </Button>
 
     </>
   );

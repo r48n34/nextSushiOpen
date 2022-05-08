@@ -46,8 +46,6 @@ function UserQueueInfo(){
     return (
         <>
         <h2>Your ticket  { data && data.length >= 3 && <FormDialog/>} </h2>
-        {/* <FormDialog/> */}
-        {/* <h2>Your ticket</h2> */}
         
         { tickerNumber !== -1 && (
 

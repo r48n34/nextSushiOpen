@@ -31,8 +31,8 @@ const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) =
     return (
       <div>
         { !errorSinglequeue && (
-            <>
-            <Menu control={<Button type="button" size="xs" color={colorScheme} >Select Store</Button>}>
+            <div style={{ display: "flex", alignItems:"center"}}>
+            <Menu control={<Button type="button" size="xs" color={colorScheme == 'dark' ? 'white' : 'dark'} >Select Store</Button>}>
                 <Menu.Label>Store</Menu.Label>
                 {singleQueue && singleQueue.data && singleQueue.data.allStoreData && singleQueue.data.allStoreData.map( (v:any) => (
                         <Menu.Item icon={<BuildingStore size={14}/>} key={"store" + v.id} onClick={ (event:any) => handleClose(event, v.id)}>{v.name}</Menu.Item>
@@ -40,9 +40,9 @@ const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) =
                 {!singleQueue && (<Menu.Item onClick={ (event:any) => handleClose(event, undefined)}>Loading...</Menu.Item>)}
 
             </Menu>
-            {" "}
+            <div style={{ width:"5px" }}></div>
             <LeftDrawer singleQueue={singleQueue}/>
-            </>
+            </div>
         )}
 
       </div>
