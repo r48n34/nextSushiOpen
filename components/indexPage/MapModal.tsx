@@ -14,7 +14,7 @@ function MapModal({ storeLocation, storePlaceString }: { storeLocation:[number, 
     copyToClipboard(storePlaceString);
 
     showNotification({
-        title: 'OK',
+        title: 'Copied',
         message: 'Copied location to clipboard.',
     })
   }
