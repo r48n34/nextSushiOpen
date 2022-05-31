@@ -28,6 +28,10 @@ export default function App(props: AppProps) {
         <meta name="description"  content="Just a simple sushi queue watcher." />
         <meta name="author" content="reemo"/>
 
+        <link rel='manifest' href='/manifest.json' />
+
+        <meta name='theme-color' content='#1a1b1e' />
+
         <meta property="og:title" content="Sushi queue" />
         <meta property="og:description" content="Just a simple sushi queue watcher." />
         <meta property="og:site_name" content="Sushi queue" />

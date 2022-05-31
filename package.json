@@ -29,6 +29,7 @@
     "crypto-js": "^4.1.1",
     "framer-motion": "^6.3.0",
     "next": "latest",
+    "next-pwa": "^5.5.2",
     "pigeon-maps": "^0.21.0",
     "react": "latest",
     "react-bootstrap": "^2.2.3",
