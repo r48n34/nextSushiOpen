@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 
 import { Container } from '@mantine/core';
@@ -9,12 +9,15 @@ import GeneralInfo from "../components/indexPage/generalInfo"
 import WaitInfo from '../components/indexPage/WaitInfo';
 import QueueTicket from '../components/indexPage/QueueTicket';
 import UserQueueInfo from '../components/indexPage/UserQueueInfo';
-// import LeftDrawer from '../components/indexPage/LeftDrawer';
+
 
 import styles from './pageCss.module.css'
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
 import ColorThemeBtn from '../components/indexPage/ColorThemeBtn';
+
+import dynamic from 'next/dynamic'
+const Clock = dynamic( () => import('react-live-clock'), { ssr: false })
 
 const Home: NextPage = () => {
 
@@ -41,6 +44,9 @@ const Home: NextPage = () => {
             <>
               <h2 style={{ margin: "0" }}> {allStore.data.allStoreData.name} ({allStore.data.allStoreData.storeStatus})</h2>
               <h5 style={{ margin: "0" }}> Last Update: {lastUpdateTime}</h5>
+              <h5 style={{ margin: "0" }}>
+                Current Time: <Clock format={'h:mm:ssa'} ticking={true} timezone={'Asia/Hong_Kong'} />
+              </h5>
             </>
           )}
         </div>

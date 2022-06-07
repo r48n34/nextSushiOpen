@@ -27,8 +27,9 @@ export default function App(props: AppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <meta name="description"  content="Just a simple sushi queue watcher." />
         <meta name="author" content="reemo"/>
-
+        <title>Sushi queue</title>
         <link rel='manifest' href='/manifest.json' />
+        <link rel="icon" type="image/png" sizes="96x96" href="/icons/icon-192x192.png"></link>
 
         <meta name='theme-color' content='#1a1b1e' />
 

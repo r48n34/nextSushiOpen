@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core';
+import { Tooltip, UnstyledButton, Grid } from '@mantine/core';
 
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../../atoms/allStoreInfo';
@@ -13,8 +13,12 @@ function QueueTicket({ refreshFunc }:{ refreshFunc:Function }){
         <>
         
         <h2 style={{ margin:"0" }}>
-          Queue ticket 
-          <Refresh style={{ paddingTop:"9px"}} size={24} strokeWidth={2} color={'#4075bf'} onClick={ () => refreshFunc() }/>
+          Queue ticket
+          <Tooltip label="Refresh status" withArrow>
+          <UnstyledButton onClick={ () => refreshFunc() }>
+            <Refresh style={{ paddingTop:"9px"}} size={24} strokeWidth={2} />
+          </UnstyledButton>
+          </Tooltip>
         </h2>
         
         <div style={{ textAlign:"center"}}>

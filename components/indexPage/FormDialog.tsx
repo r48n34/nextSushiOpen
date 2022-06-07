@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Dialog, Group, Button, Text, NumberInput } from '@mantine/core';
+import { Tooltip, UnstyledButton, Dialog, Group, Button, Text, NumberInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 
 import { useRecoilState } from 'recoil';
 import { tickerCallBeforeState } from '../../atoms/tickerCallBefore';
 import { tickerNumberState } from '../../atoms/tickerNumber';
+import { Ticket } from 'tabler-icons-react';
 
 function FormDialog() {
   const [ open, setOpen ] = useState(false);
@@ -39,9 +40,11 @@ function FormDialog() {
 
   return (
     <>
-      <Group position="left">
-        <Button size="xs" onClick={() => setOpen((v) => !v)}>Enter ticket</Button>
-      </Group>
+      <div style={{ marginTop: "9px"}}>
+        <Tooltip label="Enter Ticket" withArrow>
+        <UnstyledButton onClick={() => setOpen((v) => !v)}> <Ticket/> </UnstyledButton>
+        </Tooltip>
+      </div>
 
       <Dialog
         opened={open}

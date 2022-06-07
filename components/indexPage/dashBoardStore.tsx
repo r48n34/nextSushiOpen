@@ -1,3 +1,4 @@
+import React from 'react';
 import { Menu, Button } from '@mantine/core';
 import { useMantineColorScheme } from '@mantine/core';
 import useSWRImmutable from 'swr/immutable'
@@ -6,8 +7,8 @@ import { BuildingStore } from 'tabler-icons-react';
 import { useRecoilState } from 'recoil';
 import { tickerNumberState } from '../../atoms/tickerNumber';
 import { fetcher } from "../../utilis/swrFetcher"
-import React from 'react';
 import { callLoadingSwal } from '../../utilis/swalCall';
+
 import LeftDrawer from './LeftDrawer';
 
 const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) => {
@@ -48,7 +49,6 @@ const DashBoardStore: any = ({ setSelectedText }:{ setSelectedText:Function }) =
       </div>
     );
     
-
 }
 
 export default React.memo(DashBoardStore)

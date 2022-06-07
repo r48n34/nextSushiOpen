@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core';
+import { Grid, Group } from '@mantine/core';
 import { useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
@@ -17,7 +17,7 @@ function UserQueueInfo(){
     const [ tickerCallBefore ] = useRecoilState<number>(tickerCallBeforeState);
     const [ allStore ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
     
-    const [ isNotifications, setIsNotifications ] = useState(false);
+    const [ isNotifications, setIsNotifications ] = useState<boolean>(false);
 
     const [play] = useSound('/sounds/rock.mp3');
 
@@ -45,7 +45,10 @@ function UserQueueInfo(){
 
     return (
         <>
-        <h2>Your ticket  { data && data.length >= 3 && <FormDialog/>} </h2>
+        <Group>
+            <h2 style={{ margin: 0 }}>Your ticket</h2>
+            { data && data.length >= 3 && <FormDialog/>}
+        </Group>
         
         { tickerNumber !== -1 && (
 
