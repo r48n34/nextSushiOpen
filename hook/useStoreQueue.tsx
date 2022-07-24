@@ -13,9 +13,9 @@ export function useStoreQueue(selectedId: string | null):any {
 
     const [ data, setData ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
 
-    const [ initLoading, setInitLoading ] = useState(true); // is first time loading 
-    const [ loading, setLoading ] = useState(false); // is fetching in progress
-    const [ error, setError ] = useState(null); // error of fetch messgae
+    const [ initLoading, setInitLoading ] = useState<boolean>(true); // is first time loading 
+    const [ loading, setLoading ] = useState<boolean>(false); // is fetching in progress
+    const [ error, setError ] = useState<string | null>(null); // error of fetch messgae
     const [ stopManuelfetch, setStopManuelfetch ] = useState(false); // delay of clicking fetch btn
 
     useEffect( () =>{
@@ -72,7 +72,7 @@ export function useStoreQueue(selectedId: string | null):any {
         }
         catch(err:any){
             setData(null);
-            setError(err);
+            setError(err.message);
 
             showNotification({
                 title: 'Error',
@@ -93,6 +93,7 @@ export function useStoreQueue(selectedId: string | null):any {
     useInterval(() => {
         setStopManuelfetch(false);
     }, 4000);
+    
     //allStore, isLoading, isError, manuelFetch
     return [ loading, error, manuelFetch ]
 }
