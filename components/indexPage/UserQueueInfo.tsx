@@ -39,6 +39,7 @@ function UserQueueInfo(){
             console.log("Calling");
             play();
             callNotifications("Is near now!");
+            !!window && window.navigator.vibrate([200, 100, 200]);
         }
 
     },[data])
