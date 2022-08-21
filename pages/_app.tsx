@@ -1,9 +1,10 @@
-import { RecoilRoot, useRecoilState } from "recoil";
-import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { AppProps } from 'next/app';
+import { RecoilRoot, useRecoilState } from "recoil";
+import { ClickToComponent } from 'click-to-react-component'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
+import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -46,6 +47,7 @@ export default function App(props: AppProps) {
           withNormalizeCSS
           theme={{ colorScheme }}
         >
+          <ClickToComponent />
           <NotificationsProvider>
           <Component {...pageProps} />
           </NotificationsProvider>

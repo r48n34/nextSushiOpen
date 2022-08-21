@@ -1,4 +1,4 @@
-import { Grid, Group } from '@mantine/core';
+import { Grid, Group, Skeleton } from '@mantine/core';
 import { useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
@@ -11,7 +11,7 @@ import { askAndGetPermisstion, callNotifications } from "../../utilis/notificati
 import FormDialog from "./FormDialog"
 import useSound from 'use-sound';
 
-function UserQueueInfo(){
+function UserQueueInfo({ initLoading }:{ initLoading:boolean }){
 
     const [ tickerNumber ] = useRecoilState<number>(tickerNumberState);
     const [ tickerCallBefore ] = useRecoilState<number>(tickerCallBeforeState);
@@ -28,7 +28,9 @@ function UserQueueInfo(){
         })()
     },[])
 
-    const data = allStore ? allStore.data.singleStoreQueue.boothQueue : [-999];
+    const data = allStore && allStore.data && allStore.data.singleStoreQueue ? allStore.data.singleStoreQueue.boothQueue : [-999];
+
+    
 
     useEffect(() => {
         if(!data || data.length <= 2 || tickerNumber === -1){
@@ -43,6 +45,14 @@ function UserQueueInfo(){
         }
 
     },[data])
+
+    if(initLoading){
+        return(
+            <>
+                <Skeleton height={25} radius="xl" width="16%" style={{ marginTop: "25px" }} />
+            </>
+        )
+    }
 
     return (
         <>

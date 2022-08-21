@@ -25,7 +25,7 @@ const Home: NextPage = () => {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [lastUpdateTime, setLastUpdateTime] = useState<string | null>(null);
 
-    const [isLoading, isError, reCallFetch] = useStoreQueue(selectedId);
+    const [isLoading, isError, reCallFetch, initLoading] = useStoreQueue(selectedId);
     const [allStore] = useRecoilState<any>(allStoreInfoState);
 
     useEffect(() => {
@@ -45,10 +45,16 @@ const Home: NextPage = () => {
                     <div>
                         {allStore && allStore.status && (
                             <>
-                                <h2 style={{ margin: "0" }}> {allStore.data.allStoreData.name} ({allStore.data.allStoreData.storeStatus})</h2>
-                                <h5 style={{ margin: "0" }}> Last Update: {lastUpdateTime}</h5>
+                                <h2 style={{ margin: "0" }}> 
+                                    {allStore.data.allStoreData.name} ({allStore.data.allStoreData.storeStatus})
+                                </h2>
+                                <h5 style={{ margin: "0" }}> Last Update:</h5>
+                                <h5 style={{ margin: "0" }}>{lastUpdateTime}</h5>
                                 <h5 style={{ margin: "0" }}>
-                                    Current Time: <Clock format={'h:mm:ssa'} ticking={true} timezone={'Asia/Hong_Kong'} />
+                                    Current Time:
+                                </h5>
+                                <h5 style={{ margin: "0" }}>
+                                    <Clock format={'h:mm:ssa'} ticking={true} timezone={'Asia/Hong_Kong'} />
                                 </h5>
                             </>
                         )}
@@ -63,13 +69,13 @@ const Home: NextPage = () => {
 
                 <hr />
 
-                {selectedId && allStore && allStore.status ? (
+                {selectedId ? (
                     <>
-                        <GeneralInfo />
+                        <GeneralInfo initLoading={initLoading}/>
                         <br /><hr />
-                        <QueueTicket refreshFunc={() => reCallFetch()} />
+                        <QueueTicket initLoading={initLoading} refreshFunc={() => reCallFetch()} />
                         <br /><hr />
-                        <UserQueueInfo />
+                        <UserQueueInfo initLoading={initLoading} />
                     </>)
                     : (<WaitInfo />)
 

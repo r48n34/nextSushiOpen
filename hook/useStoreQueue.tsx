@@ -95,5 +95,5 @@ export function useStoreQueue(selectedId: string | null):any {
     }, 4000);
     
     //allStore, isLoading, isError, manuelFetch
-    return [ loading, error, manuelFetch ]
+    return [ loading, error, manuelFetch, initLoading, setInitLoading ]
 }

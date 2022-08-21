@@ -1,9 +1,42 @@
 import { useRecoilState } from "recoil";
 import { allStoreInfoState } from "../../atoms/allStoreInfo";
+import { Skeleton, Grid, Group } from '@mantine/core';
 
-const GeneralInfo = () => {
+
+const GeneralInfo = ({ initLoading }:{ initLoading:boolean }) => {
 
     const [ allStore ] = useRecoilState<any>(allStoreInfoState);
+
+    if(initLoading){
+        return(
+            <>
+            <Skeleton height={25} radius="xl" width="16%" style={{ marginTop: "25px"}} />
+
+            <Grid>
+                <Grid.Col span={6}>
+                    <Group position="center">
+                        <Skeleton height={100} circle />
+                    </Group>
+
+                    <Group position="center">
+                        <Skeleton height={20} radius="xl" width="16%" style={{ marginTop: "5px"}} />
+                    </Group>
+                </Grid.Col>
+
+                <Grid.Col span={6}>
+                    <Group position="center">
+                        <Skeleton height={100} circle />
+                    </Group>
+
+                    <Group position="center">
+                        <Skeleton height={20} radius="xl" width="16%" style={{ marginTop: "5px"}} />
+                    </Group>
+                </Grid.Col>
+
+            </Grid>
+            </>
+        )
+    }
 
     return(
         <>

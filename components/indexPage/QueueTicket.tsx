@@ -1,13 +1,41 @@
-import { Tooltip, UnstyledButton, Grid } from '@mantine/core';
+import { Tooltip, UnstyledButton, Grid, Skeleton, Group, Space } from '@mantine/core';
 
 import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../../atoms/allStoreInfo';
 
 import { Refresh } from 'tabler-icons-react';
 
-function QueueTicket({ refreshFunc }:{ refreshFunc:Function }){
+function QueueTicket({ refreshFunc, initLoading }:{ refreshFunc:Function, initLoading:boolean }){
 
     const [ allStore ] = useRecoilState<any>(allStoreInfoState);
+
+    if(!allStore || !allStore.data || !allStore.data.singleStoreQueue || initLoading){
+        return(
+            <>
+            <Skeleton height={25} radius="xl" width="16%" style={{ marginTop: "25px" }} />
+            <Space h="xl" />
+            <Grid>
+                <Grid.Col span={4}>
+                    <Group position="center">
+                        <Skeleton height={20} radius="xl" width="16%" style={{ marginTop: "5px"}} />
+                    </Group>
+                </Grid.Col>
+
+                <Grid.Col span={4}>
+                    <Group position="center">
+                        <Skeleton height={20} radius="xl" width="16%" style={{ marginTop: "5px"}} />
+                    </Group>
+                </Grid.Col>
+
+                <Grid.Col span={4}>
+                    <Group position="center">
+                        <Skeleton height={20} radius="xl" width="16%" style={{ marginTop: "5px"}} />
+                    </Group>
+                </Grid.Col>
+            </Grid>
+            </>
+        )
+    }
 
     return(
         <>
