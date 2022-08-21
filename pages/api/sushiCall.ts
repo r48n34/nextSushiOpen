@@ -3,6 +3,10 @@ import { StoreInfo } from '../../interface/sushiInterface'
 
 import { getSingleStoreQueue, getAllStorewaitInfo } from "../../services/sushiServices"
 
+export const config = {
+    runtime: 'experimental-edge',
+}
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try{
         
@@ -60,7 +64,3 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     
 }
-
-export const config = {
-    runtime: 'experimental-edge',
-};
