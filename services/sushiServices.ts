@@ -1,6 +1,6 @@
-import { genspecificStoreTicket, genStoreInfoApi } from "../data/getSushiApi";
-import { StoreInfo, StoreQueueReduce } from '../interface/sushiInterface'
 import axios from "axios"
+import { StoreInfo, StoreQueueReduce } from '../interface/sushiInterface'
+import { genspecificStoreTicket, genStoreInfoApi } from "../data/getSushiApi";
 
 async function getSingleStoreQueue(id: string | number){
 

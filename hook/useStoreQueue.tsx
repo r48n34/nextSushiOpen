@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil';
 import { allStoreInfoState } from '../atoms/allStoreInfo';
 import { RecivedRootData } from '../interface/sushiInterface';
 
+
 export function useStoreQueue(selectedId: string | null):any {
     const callApiPath = `/api/sushiCall?id=${selectedId}&method=QueueAndWaitTime`;
 

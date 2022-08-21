@@ -1,6 +1,5 @@
-// import React from "react"
-import { Map, Marker } from "pigeon-maps"
 import { useState } from 'react';
+import { Map, Marker } from "pigeon-maps"
 import { Modal, Button, Group } from '@mantine/core';
 import { copyToClipboard } from '../../utilis/copyText';
 import { showNotification } from '@mantine/notifications';

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Menu, Button } from '@mantine/core';
-import { useMantineColorScheme } from '@mantine/core';
 import useSWRImmutable from 'swr/immutable'
+import { Menu, Button } from '@mantine/core';
 import { BuildingStore } from 'tabler-icons-react';
+import { useMantineColorScheme } from '@mantine/core';
 
 import { useRecoilState } from 'recoil';
-import { tickerNumberState } from '../../atoms/tickerNumber';
 import { fetcher } from "../../utilis/swrFetcher"
 import { callLoadingSwal } from '../../utilis/swalCall';
+import { tickerNumberState } from '../../atoms/tickerNumber';
 
 import LeftDrawer from './LeftDrawer';
 
