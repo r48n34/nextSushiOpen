@@ -6,8 +6,12 @@
 const withPWA = require('next-pwa')
 
 module.exports = withPWA({
-  pwa: {
-    dest: 'public',
-    disable: process.env.NODE_ENV === 'development'
-  }
+    swcMinify: true,
+    pwa: {
+        dest: 'public',
+        disable: process.env.NODE_ENV === 'development'
+    },
+    compiler: {
+        removeConsole: true,
+    }
 })
