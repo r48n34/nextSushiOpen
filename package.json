@@ -39,6 +39,7 @@
     "next": "latest",
     "next-pwa": "^5.5.2",
     "pigeon-maps": "^0.21.0",
+    "postgres": "^3.2.4",
     "react": "latest",
     "react-bootstrap": "^2.2.3",
     "react-color": "^2.19.3",
