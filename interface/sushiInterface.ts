@@ -81,4 +81,3 @@ export interface SingleStoreQueueReduced {
     boothQueue: any[];
     mixedQueue: any[];
 }
-

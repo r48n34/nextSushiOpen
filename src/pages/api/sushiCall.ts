@@ -1,17 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { StoreInfo } from '../../interface/sushiInterface'
+import { StoreInfo } from '../../../interface/sushiInterface'
 
-import { getSingleStoreQueue, getAllStorewaitInfo } from "../../services/sushiServices"
+import { getSingleStoreQueue, getAllStorewaitInfo } from "../../../services/sushiServices"
 
-export const config = {
-    runtime: 'experimental-edge',
-}
+// export const config = {
+//     runtime: 'experimental-edge',
+// }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     try{
         
         const getId = req.query.id as string || "-1";
         const getMethod = req.query.method as string || "All";
+
+        console.log(getId, getMethod);
+        
 
         if(getMethod !== "All" && getMethod !== "OnlyQueue" && getMethod !== "QueueAndWaitTime"){
             throw new Error("Invalid method input.");
