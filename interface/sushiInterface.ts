@@ -61,7 +61,7 @@ export interface RecivedRootData {
 
 export interface Data {
     errorMsg: string;
-    allStoreData: AllStoreDataReduced;
+    allStoreData: AllStoreDataReduced[];
     singleStoreQueue: SingleStoreQueueReduced;
 }
 
