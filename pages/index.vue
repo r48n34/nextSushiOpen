@@ -18,6 +18,8 @@ watchEffect(() => console.log(data.storeData))
 <template>
 
     <div style="padding: 24px;">
+        <Header></Header>
+
         <h1>Welcome to the homepage</h1>
         <n-button type="primary">naive-ui</n-button>
         <br>
