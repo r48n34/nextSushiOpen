@@ -6,8 +6,6 @@ export default defineEventHandler( async (event) => {
 
     console.log(query);
     
-    
-    
     try{
         
         const getId = query.id as string
