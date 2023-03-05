@@ -8,8 +8,6 @@ export const useAllStoreDataStore = defineStore('allStoreDataStore', () => {
        
         let res = await fetch(`/api/sushiCall?id=-1`);
         let data = await res.json();
-
-        console.log(data.data.allStoreData);
         
         allStoreData.value = data.data.allStoreData
     }

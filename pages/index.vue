@@ -9,7 +9,7 @@ const data = useSingleStoreDataStore()
 const allStoreData = useAllStoreDataStore()
 
 allStoreData.getAllStoreData();
-data.getStoreData(11)
+// data.getStoreData(11)
 
 watchEffect(() => console.log(data.storeData))
 
@@ -22,6 +22,8 @@ watchEffect(() => console.log(data.storeData))
 
         <h1>Welcome to the homepage</h1>
         <n-button type="primary">naive-ui</n-button>
+        <StoreSelect/>
+
         <br>
         <AppAlert>
             This is an auto-imported component
