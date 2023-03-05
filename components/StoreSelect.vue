@@ -12,15 +12,18 @@ const allStoreData = useAllStoreDataStore()
 
 allStoreData.getAllStoreData();
 
-const storeList = computed( () => allStoreData.allStoreData.map( v => {
-    return {
-        label: v.name,
-        value: v.id
-    }
-}));
+const storeList = computed( () => allStoreData 
+    ? allStoreData.allStoreData.map( v => {
+        return {
+            label: v.name,
+            value: v.id
+        }
+    })
+    : [{label : "Loading...", value: -1 }]
+);
 
 
-watchEffect(() => {
+watchEffect(() => {    
     if(!value.value){
         return
     }
@@ -33,5 +36,4 @@ watchEffect(() => {
 
 <template>
     <n-select v-model:value="value" :options="storeList"/>
-
 </template>
