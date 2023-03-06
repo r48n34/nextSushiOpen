@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@sidebase/nuxt-session": "^0.2.7",
     "@types/crypto-js": "^4.1.1",
     "@types/uuid": "^9.0.1",
     "@vueuse/core": "^9.13.0",

@@ -6,7 +6,7 @@ export const useAllStoreDataStore = defineStore('allStoreDataStore', () => {
 
     async function getAllStoreData(){
        
-        let res = await fetch(`/api/sushiCall?id=-1`);
+        let res = await fetch("/api/sushiCall?id=-1");
         let data = await res.json();
         
         allStoreData.value = data.data.allStoreData

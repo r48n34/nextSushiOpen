@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { darkTheme, NConfigProvider, NDivider, NStatistic } from 'naive-ui'
+import { ref, onMounted } from 'vue'
+import { darkTheme, NConfigProvider, NDivider, NStatistic, NModal, NCard, NSpin } from 'naive-ui'
 import { NGrid, NGi, NH2 } from 'naive-ui'
 
 import { useAllStoreDataStore } from '~~/store/allStoreDataStore';
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
+
+
 
 const data = useSingleStoreDataStore()
 const allStoreData = useAllStoreDataStore()
@@ -14,11 +16,45 @@ watchEffect(() => console.log(data.storeData?.allStoreData))
 
 const myTicket = ref<any>("Hello")
 
+onMounted(() => {
+    const storeID = localStorage.getItem("storeID");
+    if(storeID){
+        data.setLoading();
+        data.getStoreData(storeID)
+    }
+  
+})
+
+watchEffect(() => {
+    if(data.initLoading){
+     
+    }
+})
 
 </script>
 
 <template>
 <n-config-provider :theme="darkTheme">
+
+    <n-modal :show="data.initLoading">
+        <n-card
+            style="width: 600px"
+            title="Data Loading"
+            :bordered="false"
+            size="huge"
+            role="dialog"
+            aria-modal="true"
+        >
+            <div style="text-align: center;">
+                <n-spin size="large" />
+            </div>
+
+            <NH2 style="text-align: center;">
+                Loading ...
+            </NH2>
+        </n-card>
+    </n-modal>
+
     <div>
 
         <template v-if="data.storeData">
@@ -71,7 +107,7 @@ const myTicket = ref<any>("Hello")
 </template>
 
 
-<style scoped>
+<style>
 .grid-items {
     display: flex;
     align-items: center;

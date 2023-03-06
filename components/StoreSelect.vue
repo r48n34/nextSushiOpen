@@ -5,6 +5,7 @@ import { NSelect } from 'naive-ui'
 import { useAllStoreDataStore } from '~~/store/allStoreDataStore';
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
+
 const value = ref(null)
 
 const singleStore = useSingleStoreDataStore()
@@ -23,11 +24,13 @@ const storeList = computed( () => allStoreData
 );
 
 
-watchEffect(() => {    
+watchEffect(async () => {  
     if(!value.value){
         return
     }
 
+    singleStore.setLoading();
+    localStorage.setItem("storeID", value.value)
     singleStore.getStoreData(value.value)
 })
 
