@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { AllStoreDataReduced, Data } from '~~/interface/sushiInterface';
+import { AllStoreDataReduced } from '~~/interface/sushiInterface';
 
 export const useAllStoreDataStore = defineStore('allStoreDataStore', () => {
     const allStoreData = ref<AllStoreDataReduced[]>([])
