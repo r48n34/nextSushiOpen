@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { darkTheme, NConfigProvider, NDivider, NStatistic } from 'naive-ui'
 import { NGrid, NGi, NH2 } from 'naive-ui'
 
@@ -10,6 +11,9 @@ const allStoreData = useAllStoreDataStore()
 
 allStoreData.getAllStoreData();
 watchEffect(() => console.log(data.storeData?.allStoreData))
+
+const myTicket = ref<any>("Hello")
+
 
 </script>
 
@@ -36,7 +40,6 @@ watchEffect(() => console.log(data.storeData?.allStoreData))
                     </n-statistic>             
                 </n-gi>
             </n-grid>
-            
 
             <n-divider title-placement="center">
                 Queue ticket
@@ -58,6 +61,8 @@ watchEffect(() => console.log(data.storeData?.allStoreData))
             <n-divider title-placement="center">
                 Your ticket
             </n-divider>
+
+            <InputTicket v-model="myTicket"/>
 
         </template>
 
