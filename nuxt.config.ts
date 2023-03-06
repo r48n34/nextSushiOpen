@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     typescript: {
         shim: false
     },
-    modules: ['@pinia/nuxt', '@nuxtjs/color-mode'],
+    modules: ['@pinia/nuxt', '@nuxtjs/color-mode', '@vueuse/nuxt'],
     build: {
         transpile:
           process.env.NODE_ENV === 'production'

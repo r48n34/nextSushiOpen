@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { darkTheme, NConfigProvider } from 'naive-ui'
-
+import { darkTheme, NConfigProvider, NDivider, NStatistic } from 'naive-ui'
+import { NGrid, NGi, NH2 } from 'naive-ui'
 
 import { useAllStoreDataStore } from '~~/store/allStoreDataStore';
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
@@ -16,14 +16,60 @@ watchEffect(() => console.log(data.storeData?.allStoreData))
 <template>
 <n-config-provider :theme="darkTheme">
     <div>
-    
-        <br>
-        <!-- <n-h1>
-            This is an auto-imported component
-            {{ data.storeData ? data.storeData.allStoreData.name : "N/A"}}
-        </n-h1> -->
+
+        <template v-if="data.storeData">
+
+            <n-divider title-placement="center">
+                General Info
+            </n-divider>
+
+            <n-grid x-gap="12" :cols="2">
+                <n-gi class="grid-items">
+                    <n-statistic label="Minutes">
+                        {{ data.storeData.allStoreData.wait }}
+                    </n-statistic>
+                </n-gi>
+            
+                <n-gi class="grid-items">
+                    <n-statistic label="Queue">
+                        {{ data.storeData.allStoreData.waitingGroup }}
+                    </n-statistic>             
+                </n-gi>
+            </n-grid>
+            
+
+            <n-divider title-placement="center">
+                Queue ticket
+            </n-divider>
+
+            <n-grid x-gap="12" :cols="3">
+                
+                <n-gi 
+                    class="grid-items"
+                    v-for="v in data.storeData.singleStoreQueue.boothQueue"
+                >
+                    <n-h2>
+                        {{ v }}
+                    </n-h2>
+                </n-gi>
+              
+            </n-grid>
+
+            <n-divider title-placement="center">
+                Your ticket
+            </n-divider>
+
+        </template>
 
     </div>
-
 </n-config-provider>
 </template>
+
+
+<style scoped>
+.grid-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>

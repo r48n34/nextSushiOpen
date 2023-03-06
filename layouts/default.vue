@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { darkTheme, NConfigProvider } from 'naive-ui'
-import { NGrid, NGi, NH1, NH4, NTag } from 'naive-ui'
+import { NGrid, NGi, NH1, NH4 } from 'naive-ui'
 
+import { useTimestamp } from '@vueuse/core'
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
+const timestamp = useTimestamp({ offset: 0 })
 const data = useSingleStoreDataStore()
 
 </script>
@@ -22,6 +24,10 @@ const data = useSingleStoreDataStore()
     
             <n-h4 style="margin: 0;">
               Last Update: {{ data.lastUpdate.toTimeString().slice(0,9) }}
+            </n-h4>
+
+            <n-h4 style="margin: 0;">
+              Current: {{ new Date(timestamp).toTimeString().slice(0,9) }}
             </n-h4>
         </template>
 
