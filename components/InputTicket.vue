@@ -2,8 +2,7 @@
 import { ref } from 'vue'
 import { NButton, NModal, NInputNumber, NSelect, NText } from 'naive-ui'
 
-defineProps(['modelValue'])
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['setTicket'])
 
 const showModal = ref(false)
 const internalTicketNumber = ref(500)
@@ -17,14 +16,15 @@ const selectOptions = [2,5,10,15,20,25,30].map( v => {
 })
 
 function setOutsideNum(){
-    emit('update:modelValue', internalTicketNumber)
+    emit('setTicket', internalTicketNumber, internalTicketCall);
+    showModal.value = false
 }
 
 </script>
 
 <template>
-    <n-button @click="showModal = true">
-      Start Me up
+    <n-button size="small" strong secondary round type="primary" @click="showModal = true">
+      + Ticket
     </n-button>
 
     <n-modal 
@@ -52,6 +52,13 @@ function setOutsideNum(){
             Time to call
         </n-text>
         <n-select v-model:value="internalTicketCall" :options="selectOptions" />
+
+        <br/>
+        <div style="display: flex; justify-content: end;">
+            <n-button type="success" :on-click="setOutsideNum">
+                Submit
+            </n-button>
+        </div>
 
 
     </n-modal>

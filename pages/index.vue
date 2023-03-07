@@ -12,7 +12,17 @@ const allStoreData = useAllStoreDataStore()
 allStoreData.getAllStoreData();
 watchEffect(() => console.log(data.storeData?.allStoreData))
 
-const myTicket = ref<number>(500)
+const callInfo = reactive<{myTicket : number | null, timeToCall: number | null}>({
+    myTicket: null,
+    timeToCall: null
+})
+
+function setTicket(myTicket: number, timeToCall: number){
+    callInfo.myTicket = myTicket
+    callInfo.timeToCall = timeToCall
+
+    console.log(callInfo);
+}
 
 onMounted(() => {
     const storeID = localStorage.getItem("storeID");
@@ -93,10 +103,14 @@ watchEffect(() => {
             </n-grid>
 
             <n-divider title-placement="center">
-                Your ticket
+                <InputTicket @setTicket="setTicket" />
             </n-divider>
 
-            <InputTicket v-model="myTicket"/>
+            
+
+            <h5 v-if="callInfo.myTicket">
+                {{ callInfo.myTicket }}
+            </h5>
 
         </template>
 
