@@ -6,15 +6,13 @@ import { NGrid, NGi, NH2 } from 'naive-ui'
 import { useAllStoreDataStore } from '~~/store/allStoreDataStore';
 import { useSingleStoreDataStore } from '~~/store/singleStoreDataStore';
 
-
-
 const data = useSingleStoreDataStore()
 const allStoreData = useAllStoreDataStore()
 
 allStoreData.getAllStoreData();
 watchEffect(() => console.log(data.storeData?.allStoreData))
 
-const myTicket = ref<any>("Hello")
+const myTicket = ref<number>(500)
 
 onMounted(() => {
     const storeID = localStorage.getItem("storeID");
