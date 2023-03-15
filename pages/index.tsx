@@ -18,6 +18,7 @@ import { allStoreInfoState } from '../atoms/allStoreInfo';
 import styles from './pageCss.module.css'
 
 import dynamic from 'next/dynamic'
+import RedirectNewAppHeader from '../components/indexPage/RedirectNewAppHeader';
 const Clock = dynamic(() => import('react-live-clock'), { ssr: false })
 
 const Home: NextPage = () => {
@@ -39,6 +40,8 @@ const Home: NextPage = () => {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
 
+            <RedirectNewAppHeader/>
+            
             <Container size="xl" className={styles.textStyleLightBg}>
 
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
