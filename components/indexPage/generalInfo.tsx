@@ -41,7 +41,7 @@ const GeneralInfo = ({ initLoading }: { initLoading: boolean }) => {
     return (
         <>
             <Text fw={600} fz={20}>
-                General Info
+                📚 General Info
             </Text>
 
             <Box style={{ display: "flex", justifyContent: 'space-around' }}>
@@ -52,7 +52,7 @@ const GeneralInfo = ({ initLoading }: { initLoading: boolean }) => {
                     </Text>
 
                     <Text fw={400} fz={16} c="dimmed">
-                        Minutes
+                        Est Wait Minutes
                     </Text>
                 </Box>
 

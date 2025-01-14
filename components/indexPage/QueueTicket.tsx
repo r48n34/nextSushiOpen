@@ -40,7 +40,7 @@ function QueueTicket({ refreshFunc, initLoading }: { refreshFunc: Function, init
     return (
         <>
             <Text fw={600} fz={20}>
-                Queue ticket
+                🎢 Queue ticket
 
                 <Tooltip label="Refresh status" withArrow>
                     <UnstyledButton onClick={() => refreshFunc()}>
@@ -49,11 +49,13 @@ function QueueTicket({ refreshFunc, initLoading }: { refreshFunc: Function, init
                 </Tooltip>
             </Text>
 
-            <Box style={{ textAlign: "center" }}>
+            <Box style={{ textAlign: "center" }} mt={12}>
                 <Grid>
                     {allStore.data.singleStoreQueue.boothQueue.map((v: string) => (
                         <Grid.Col key={v} span={4}>
-                            <h1 style={{ margin: "0" }}>{v}</h1>
+                            <Text fz={40} fw={500}>
+                                {v}
+                            </Text>
                         </Grid.Col>
                     ))}
                 </Grid>
