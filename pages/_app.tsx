@@ -12,18 +12,6 @@ import { Notifications } from '@mantine/notifications';
 export default function App(props: AppProps) {
     const { Component, pageProps } = props;
 
-    // const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    //     key: 'mantine-color-scheme',
-    //     defaultValue: 'dark',
-    //     getInitialValueInEffect: true,
-    // });
-
-    // const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
-
-    // useHotkeys([
-    //     ['T', () => toggleColorScheme()]
-    // ]);
-
     return (
         <RecoilRoot>
 
@@ -44,12 +32,10 @@ export default function App(props: AppProps) {
                 <meta name="keywords" content="sushi,queue,call" />
             </Head>
 
-
             <MantineProvider>
                 <ClickToComponent />
                 <Notifications />
                 <Component {...pageProps} />
-
             </MantineProvider>
 
         </RecoilRoot>

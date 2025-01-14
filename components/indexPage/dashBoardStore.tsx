@@ -33,7 +33,6 @@ const DashBoardStore = ({ setSelectedText }: { setSelectedText: Function }) => {
             <></>
         )
     }
-    console.log(groupBy(singleQueue.data.allStoreData, prop("region")));
 
     return (
         <>

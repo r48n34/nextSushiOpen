@@ -19,7 +19,7 @@ import styles from './pageCss.module.css'
 
 import dynamic from 'next/dynamic'
 import { RecivedRootData } from '../interface/sushiInterface';
-// import RedirectNewAppHeader from '../components/indexPage/RedirectNewAppHeader';
+
 const Clock = dynamic(() => import('react-live-clock'), { ssr: false })
 
 const Home: NextPage = () => {
