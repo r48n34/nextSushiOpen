@@ -1,58 +1,57 @@
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { RecoilRoot } from "recoil";
 import { ClickToComponent } from 'click-to-react-component'
-import { useHotkeys, useLocalStorage } from '@mantine/hooks';
-import { NotificationsProvider } from '@mantine/notifications';
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
 export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+    const { Component, pageProps } = props;
 
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: 'mantine-color-scheme',
-    defaultValue: 'dark',
-    getInitialValueInEffect: true,
-  });
+    // const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    //     key: 'mantine-color-scheme',
+    //     defaultValue: 'dark',
+    //     getInitialValueInEffect: true,
+    // });
 
-  const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+    // const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
-  useHotkeys([
-    ['T', () => toggleColorScheme()]
-  ]);
+    // useHotkeys([
+    //     ['T', () => toggleColorScheme()]
+    // ]);
 
-  return (
-    <RecoilRoot>
-      
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <meta name="description"  content="Just a simple sushi queue watcher." />
-        <meta name="author" content="reemo"/>
-        <title>Sushi queue</title>
-        <link rel='manifest' href='/manifest.json' />
-        <link rel="icon" type="image/png" sizes="96x96" href="/icons/icon-192x192.png"></link>
+    return (
+        <RecoilRoot>
 
-        <meta name='theme-color' content='#1a1b1e' />
+            <Head>
+                <meta name="viewport" content="initial-scale=1, width=device-width" />
+                <meta name="description" content="Just a simple sushi queue watcher." />
+                <meta name="author" content="reemo" />
+                <title>Sushi queue</title>
+                <link rel='manifest' href='/manifest.json' />
+                <link rel="icon" type="image/png" sizes="96x96" href="/icons/icon-192x192.png"></link>
 
-        <meta property="og:title" content="Sushi queue" />
-        <meta property="og:description" content="Just a simple sushi queue watcher." />
-        <meta property="og:site_name" content="Sushi queue" />
+                <meta name='theme-color' content='#1a1b1e' />
 
-        <meta name="keywords" content="sushi,queue,call"/>
-      </Head>
+                <meta property="og:title" content="Sushi queue" />
+                <meta property="og:description" content="Just a simple sushi queue watcher." />
+                <meta property="og:site_name" content="Sushi queue" />
 
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{ colorScheme }}
-        >
-          <ClickToComponent />
-          <NotificationsProvider>
-          <Component {...pageProps} />
-          </NotificationsProvider>
-        </MantineProvider>
-      </ColorSchemeProvider>
-    </RecoilRoot>
-  );
+                <meta name="keywords" content="sushi,queue,call" />
+            </Head>
+
+
+            <MantineProvider>
+                <ClickToComponent />
+                <Notifications />
+                <Component {...pageProps} />
+
+            </MantineProvider>
+
+        </RecoilRoot>
+    );
 }

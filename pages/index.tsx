@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 
-import { Container } from '@mantine/core';
+import { Container, Divider, Group, Text } from '@mantine/core';
 import { useStoreQueue } from '../hook/useStoreQueue';
 
 import DashBoardStore from '../components/indexPage/dashBoardStore';
@@ -18,7 +18,8 @@ import { allStoreInfoState } from '../atoms/allStoreInfo';
 import styles from './pageCss.module.css'
 
 import dynamic from 'next/dynamic'
-import RedirectNewAppHeader from '../components/indexPage/RedirectNewAppHeader';
+import { RecivedRootData } from '../interface/sushiInterface';
+// import RedirectNewAppHeader from '../components/indexPage/RedirectNewAppHeader';
 const Clock = dynamic(() => import('react-live-clock'), { ssr: false })
 
 const Home: NextPage = () => {
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
     const [lastUpdateTime, setLastUpdateTime] = useState<string | null>(null);
 
     const [isLoading, isError, reCallFetch, initLoading] = useStoreQueue(selectedId);
-    const [allStore] = useRecoilState<any>(allStoreInfoState);
+    const [allStore] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
 
     useEffect(() => {
         setLastUpdateTime(new Date().toLocaleString("en-US", { timeZone: "Asia/Hong_kong" }));
@@ -36,51 +37,57 @@ const Home: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Sushi call - Home</title>
+                <title>Home | Sushi call</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
 
-            <RedirectNewAppHeader/>
-            
             <Container size="xl" className={styles.textStyleLightBg}>
 
                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
                     <div>
                         {allStore && allStore.status && (
                             <>
-                                <h2 style={{ margin: "0" }}> 
+                                <Text style={{ margin: "0" }}>
                                     {allStore.data.allStoreData.name} ({allStore.data.allStoreData.storeStatus})
-                                </h2>
-                                <h5 style={{ margin: "0" }}> Last Update:</h5>
-                                <h5 style={{ margin: "0" }}>{lastUpdateTime}</h5>
-                                <h5 style={{ margin: "0" }}>
+                                </Text>
+
+                                <Text c="dimmed" fz={12}>
+                                    Last Update:
+                                </Text>
+                                <Text fz={10}> 
+                                    {lastUpdateTime}
+                                </Text>
+
+                                <Text c="dimmed" fz={12} mt={4}>
                                     Current Time:
-                                </h5>
-                                <h5 style={{ margin: "0" }}>
+                                </Text>
+                                <Text fz={10}>
                                     <Clock format={'h:mm:ssa'} ticking={true} timezone={'Asia/Hong_Kong'} />
-                                </h5>
+                                </Text>
                             </>
                         )}
                     </div>
 
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <Group justify='flex-end'>
                         <DashBoardStore setSelectedText={setSelectedId} />
-                        <div style={{ width: "10px" }}></div>
                         <ColorThemeBtn />
-                    </div>
+                    </Group>
+
                 </div>
 
-                <hr />
+                <Divider my="md" />
 
                 {selectedId ? (
                     <>
-                        <GeneralInfo initLoading={initLoading}/>
+                        <GeneralInfo initLoading={initLoading} />
                         <br /><hr />
                         <QueueTicket initLoading={initLoading} refreshFunc={() => reCallFetch()} />
                         <br /><hr />
                         <UserQueueInfo initLoading={initLoading} />
                     </>)
-                    : (<WaitInfo />)
+                    : (
+                        <WaitInfo />
+                    )
 
                 }
 

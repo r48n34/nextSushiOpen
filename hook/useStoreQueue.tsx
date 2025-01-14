@@ -12,7 +12,7 @@ import { RecivedRootData } from '../interface/sushiInterface';
 export function useStoreQueue(selectedId: string | null):any {
     const callApiPath = `/api/sushiCall?id=${selectedId}&method=QueueAndWaitTime`;
 
-    const [ data, setData ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
+    const [ _, setData ] = useRecoilState<RecivedRootData | null>(allStoreInfoState);
 
     const [ initLoading, setInitLoading ] = useState<boolean>(true); // is first time loading 
     const [ loading, setLoading ] = useState<boolean>(false); // is fetching in progress
@@ -62,17 +62,17 @@ export function useStoreQueue(selectedId: string | null):any {
             setError(null);
             setLoading(true);
 
-            let data = await axios.get(callApiPath);
+            const data = await axios.get(callApiPath);
             setData(data.data);
 
-            showNotification({
-                title: 'Updated',
-                message: 'New queue info is here!',
-                autoClose: 1500,
-            })
+            // showNotification({
+            //     title: 'Updated',
+            //     message: 'New queue info is here!',
+            //     autoClose: 1500,
+            // })
         }
         catch(err:any){
-            setData(null);
+            // setData(null);
             setError(err.message);
 
             showNotification({
@@ -93,7 +93,7 @@ export function useStoreQueue(selectedId: string | null):any {
     useInterval(fetchData, 15000);
     useInterval(() => {
         setStopManuelfetch(false);
-    }, 4000);
+    }, 5000);
     
     //allStore, isLoading, isError, manuelFetch
     return [ loading, error, manuelFetch, initLoading, setInitLoading ]
