@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from "axios"
 import useInterval from 'react-useinterval';
-import { showNotification } from '@mantine/notifications';
+// import { showNotification } from '@mantine/notifications';
 
 import { callLoadingSwal, closeSwal } from "../utilis/swalCall"
 import { useRecoilState } from 'recoil';
@@ -28,20 +28,20 @@ export function useStoreQueue(selectedId: string | null):any {
     async function manuelFetch(){
 
         if(stopManuelfetch){
-            showNotification({
-                title: 'Error',
-                color: 'red',
-                message: 'You can not fetch too fast. Please wait.',
-                autoClose: 4500,
-            })
+            // showNotification({
+            //     title: 'Error',
+            //     color: 'red',
+            //     message: 'You can not fetch too fast. Please wait.',
+            //     autoClose: 4500,
+            // })
             return false;
         }
 
-        showNotification({
-            title: 'Fetching',
-            message: 'You request is processing.',
-            autoClose: 4500,
-        })
+        // showNotification({
+        //     title: 'Fetching',
+        //     message: 'You request is processing.',
+        //     autoClose: 4500,
+        // })
 
         fetchData();
         setStopManuelfetch(true);
@@ -75,12 +75,12 @@ export function useStoreQueue(selectedId: string | null):any {
             // setData(null);
             setError(err.message);
 
-            showNotification({
-                title: 'Error',
-                color: 'red',
-                message: 'Current data occur error.',
-                autoClose: 1500,
-            })
+            // showNotification({
+            //     title: 'Error',
+            //     color: 'red',
+            //     message: 'Current data occur error.',
+            //     autoClose: 1500,
+            // })
         }
         finally{
             setLoading(false);

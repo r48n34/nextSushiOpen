@@ -15,11 +15,10 @@
     "@emotion/react": "^11.10.0",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@mantine/core": "^7.15.3",
+    "@mantine/core": "7.15.0",
     "@mantine/dates": "^7.15.3",
     "@mantine/form": "^7.15.3",
     "@mantine/hooks": "^7.15.3",
-    "@mantine/modals": "^7.15.3",
     "@mantine/next": "^4.2.2",
     "@mantine/notifications": "^7.15.3",
     "@mantine/nprogress": "^7.15.3",
@@ -68,7 +67,7 @@
     "postcss": "^8.5.0",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "typescript": "latest"
+    "typescript": "5.5.4"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

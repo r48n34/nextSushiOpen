@@ -1,5 +1,4 @@
 import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
 
 import Head from 'next/head';
 import { AppProps } from 'next/app';
@@ -7,7 +6,6 @@ import { RecoilRoot } from "recoil";
 import { ClickToComponent } from 'click-to-react-component'
 
 import { MantineProvider } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
 
 export default function App(props: AppProps) {
     const { Component, pageProps } = props;
@@ -34,7 +32,6 @@ export default function App(props: AppProps) {
 
             <MantineProvider>
                 <ClickToComponent />
-                <Notifications />
                 <Component {...pageProps} />
             </MantineProvider>
 

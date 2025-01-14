@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Tooltip, UnstyledButton, Dialog, Group, Button, Text, NumberInput } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
+// import { showNotification } from '@mantine/notifications';
 
 import { useRecoilState } from 'recoil';
 import { tickerCallBeforeState } from '../../atoms/tickerCallBefore';
@@ -28,10 +28,10 @@ function FormDialog() {
             return;
         }
 
-        showNotification({
-            title: 'Success',
-            message: 'Your ticket is added to notifications.',
-        })
+        // showNotification({
+        //     title: 'Success',
+        //     message: 'Your ticket is added to notifications.',
+        // })
 
         setTickerNumber(tempValue[0]);
         setTickerCallBefore(tempValue[1]);
